@@ -1,10 +1,14 @@
 {
-  "name": "angular-contacts-api",
+  "name": "travel_node",
   "version": "1.0.0",
-  "description": "",
+  "description": "travel_node",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaozhun/Travel_node"
   },
   "keywords": [],
   "author": "",
