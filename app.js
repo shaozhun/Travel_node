@@ -1,8 +1,9 @@
 const jsonServer = require('json-server')
 const server = jsonServer.create()
-var express = require('express')
-var cors = require('cors')
+const express = require('express')
+const cors = require('cors')
 const { connection } = require('./mysql') //mysql文件写的是数据库连接信息 修改为mysql_demo.js
+const { parameterValidate } = require('./middleware')
 
 server.use(cors())
 server.use(jsonServer.bodyParser)
@@ -19,7 +20,9 @@ server.get('/', (req, res, next) => {
 
 })
 
-server.get('/swiperList', (req, res, next) => {
+server.get('/swiperList', parameterValidate({
+  cityId: 'string'
+}), (req, res, next) => {
   let selectSql = 'SELECT * FROM travel_swiper WHERE cityId = ' + req.body.cityId;
   connection.query(selectSql, (err, result) => {
     if (err) {
@@ -34,5 +37,5 @@ server.get('/swiperList', (req, res, next) => {
 
 
 server.listen(3099, () => {
-  console.log('JSON Server is running(3099)')
+  console.log('travel_node api server is running on port 3099')
 })
