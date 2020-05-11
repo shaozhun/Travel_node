@@ -20,7 +20,7 @@ server.get('/', (req, res, next) => {
 
 })
 
-server.get('/swiperList', parameterValidate({
+server.post('/swiperList', parameterValidate({
   cityId: 'string'
 }), (req, res, next) => {
   let selectSql = 'SELECT * FROM travel_swiper WHERE cityId = ' + req.body.cityId;
